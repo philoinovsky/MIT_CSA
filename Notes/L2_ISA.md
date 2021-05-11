@@ -25,3 +25,17 @@ time/program = instructions/program * cycles/instructions * time/cycle
 2. one with large number of ports are difficult to design
 ## Implement MIPS
 ... see pdf
+## Performance
+### O. steps
+1. instruction fetch
+2. decode and register fetch
+3. ALU operation
+4. data fetch if required
+5. register write-back setup time
+### I. Single-Cycle Hardwired Control
+`t > t_memory_read + t_memory_write + t_alu + t_write_back + t_register_fetch`
+### II. Two-State Controller
+```
+fetch -> execute
+t > max{t_memory_read, t_memory_write + t_alu + t_write_back + t_register_fetch}
+```
