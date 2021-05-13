@@ -83,3 +83,25 @@ one-step process in case of a hit
     - often there is no secondary storage to swap to
     - programs custom-written for particular memory configuration in product
     - difficult to implement restartable instructions for exposed architectures
+## Note: Linux TLB (48bit address bus)
+1. memory structure: 4 level of pagetables: 
+    - `PGD` (Page Global Directory) -> `PUD` (Page Upper Directory) -> `PMD` (Page Middle Directory) -> `PTE` (Page Table Entry)
+2. avoid TLB flush when context switch (too expensive!)
+### I. ASID (Address Space ID)
+![ASID](./img/v2-80141749c349c85b28ee001e2d3f88c5_720w.jpg)
+cache entry:
+- valid bit: V
+- ASID: each process has its own ASID, refer to current table base register. Note it's only 16 bit (65536)
+- nG: non-global bit: if its global (i.e. kernel space/shared memory), it will be valid for all process
+- tag: bit 20 to bit 47 (36bits), which is [index of PGD PUD PMD]
+### II. when to flush TLB
+1. when all ASIDs are assigned over, flush the whole TLB
+2. when map va to pa, flush corresponding TLB entry
+### III. the flow
+TLB hit if:
+```
+v && (this.ASID == ASID || !ng) && tag == tag 
+```
+handled by hardware
+### IV. size TLB can store
+for example: 128 entries, each Page 4KB, TLB can store references to 128 * 4 = 512KB.
