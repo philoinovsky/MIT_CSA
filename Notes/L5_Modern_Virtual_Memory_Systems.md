@@ -47,11 +47,16 @@ purpose: we want to use virtual address to index the cache! So after context swi
 1. index L is available without consulting the TLB
 2. cache and TLB accesses can begin simultaneously
 3. tag comparison is made after both accesses are completed
-### IV. Concurrent Access to TLB & Large L1
-### V. Virtual-Index Physical-Tag Caches
-### VI. a solution via Second-Level Cache
-### VII. Anti-Aliasing Using L2
-### VIII. Virtually Addressed L1
+4. this can be realized when `L + b <= k`
+### IV. Virtual-Index Physical-Tag Caches
+1. use at least n-way associative cache to make `L + b = k`
+2. is this scheme realistic? not sure
+### V. a solution via Second-Level Cache
+may increase latency?
+#### Anti-Aliasing Using L2
+add one more tag `a` in L2 will also work
+#### Virtually Addressed L1
+add the whole VA in L2 -> then what's the purpose of L1???
 ## Modern Usage
 ### I. Page Fault Handler
 1. when the referenced page not in DRAM
