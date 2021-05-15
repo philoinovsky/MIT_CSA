@@ -40,9 +40,10 @@ one-step process in case of a hit
 2. aliasing problems due to the sharing of pages
 ##### Aliasing in Virtual-Address Caches
 1. the problem: two va refers to same pa, read not aware of write
-2. general solution: disallow aliases to coexist in cache
-3. software (i.e. OS) solution for direct-mapped cache: VAs of shared pages must agree in cache index bits; this ensures all VAs accessing same PA will conflict in direct-mapped cache
+    - general solution: disallow aliases to coexist in cache
+    - software (i.e. OS) solution for direct-mapped cache: VAs of shared pages must agree in cache index bits; this ensures all VAs accessing same PA will conflict in direct-mapped cache
 ### III. Concurrent Access to TLB & Cache
+purpose: we want to use virtual address to index the cache! So after context switch, some blocks in cache are still available
 1. index L is available without consulting the TLB
 2. cache and TLB accesses can begin simultaneously
 3. tag comparison is made after both accesses are completed
