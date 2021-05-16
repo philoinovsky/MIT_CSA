@@ -11,6 +11,17 @@ fetch -> decode & Reg-fetch -> execute -> memory access -> write back
 ## Hazards
 ### I. structural hazard - need resource being used by another inst
 ### II. data hazard - depend on value produced by an earlier inst
+#### A. type of dependency
+1. data-dependence: source depends on last result
+2. anti-dependence: source same as last result, cannot write before read
+3. output-dependence: result same as last result, cannot write before last write
+#### B. type of Data Hazards
+1. read after write
+2. write after read
+3. write after write
+### C. Register vs Memory Data Dependencies:
+1. data hazards due to register operands can be determined at the decode stage
+2. data hazards due to memory operands can be determined only after computing the effective address
 #### A. stall
 1. when to stall ->
 ```

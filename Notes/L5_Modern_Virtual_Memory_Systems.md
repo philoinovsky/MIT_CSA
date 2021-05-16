@@ -94,7 +94,7 @@ add the whole VA in L2 -> then what's the purpose of L1???
     - `PGD` (Page Global Directory) -> `PUD` (Page Upper Directory) -> `PMD` (Page Middle Directory) -> `PTE` (Page Table Entry)
 2. avoid TLB flush when context switch (too expensive!)
 ### I. ASID (Address Space ID)
-![ASID](./img/v2-80141749c349c85b28ee001e2d3f88c5_720w.jpg)
+![ASID](./img/v2-80141749c349c85b28ee001e2d3f88c5_720w.jpg) \\
 cache entry:
 - valid bit: V
 - ASID: each process has its own ASID, refer to current table base register. Note it's only 16 bit (65536)
